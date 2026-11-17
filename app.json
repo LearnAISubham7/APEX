@@ -1,7 +1,9 @@
+
 {
   "expo": {
     "name": "APEX",
     "slug": "APEX",
+    "scheme": "apex",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -11,6 +13,7 @@
     },
     "android": {
       "package": "com.learnaisubham7.apex",
+      "googleServicesFile": "./google-services.json",
       "blockedPermissions": [
         "android.permission.SYSTEM_ALERT_WINDOW"
       ],
@@ -27,7 +30,9 @@
     },
     "plugins": [
       "expo-sqlite",
-      "expo-sharing"
+      "expo-sharing",
+      "expo-web-browser",
+      "react-native-nitro-google-signin"
     ],
     "extra": {
       "eas": {

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "375804782071",
+    "project_id": "apex-cd57a",
+    "storage_bucket": "apex-cd57a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:375804782071:android:c569d7be41a4069e1abaf2",
+        "android_client_info": {
+          "package_name": "com.learnaisubham7.apex"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "375804782071-k5s0ho4b8hs4nv7uac509n7supe9nbfl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.learnaisubham7.apex",
+            "certificate_hash": "6e4c7906e49c0ac5fc845c8dc8898857bdf33633"
+          }
+        },
+        {
+          "client_id": "375804782071-gk4iith307s4uhgvnrfm0vg2cadv3hlf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDy8vYu0hTNPAGjEkUXGPWfCK4ea0dg1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "375804782071-gk4iith307s4uhgvnrfm0vg2cadv3hlf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

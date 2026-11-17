@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, {useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -18,6 +18,13 @@ import {
   BackupPayload,
 } from "../../../services/backupService";
 
+import { onAuthStateChanged, type User } from "firebase/auth";
+import { auth } from "../../../services/firebase";
+import {
+  signInWithGoogle,
+  signOutFromGoogle,
+} from "../../../services/authService";
+
 type Props = {
   onBack: () => void;
   onRestore: (backup: BackupPayload) => Promise<void>;
@@ -25,6 +32,52 @@ type Props = {
 
 export default function SettingsScreen({ onBack, onRestore }: Props) {
   const [busy, setBusy] = useState(false);
+
+  const [user, setUser] = useState<User | null>(auth.currentUser);
+  const [authBusy, setAuthBusy] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, setUser);
+    return unsubscribe;
+  }, []);
+
+  const handleGoogleSignIn = async () => {
+  try {
+    setAuthBusy(true);
+
+    const result = await signInWithGoogle();
+
+    if (result) {
+      Alert.alert(
+        "Welcome to APEX",
+        `Signed in as ${result.user.email ?? "Google user"}.`
+      );
+    }
+  } catch (error) {
+    Alert.alert(
+      "Sign-in failed",
+      error instanceof Error ? error.message : "Could not sign in."
+    );
+  } finally {
+    setAuthBusy(false);
+  }
+};
+
+const handleGoogleSignOut = async () => {
+  try {
+    setAuthBusy(true);
+    await signOutFromGoogle();
+
+    Alert.alert("Signed out", "You have signed out of APEX.");
+  } catch (error) {
+    Alert.alert(
+      "Sign-out failed",
+      error instanceof Error ? error.message : "Could not sign out."
+    );
+  } finally {
+    setAuthBusy(false);
+  }
+};
 
   const handleExport = async () => {
     try {
@@ -124,6 +177,37 @@ export default function SettingsScreen({ onBack, onRestore }: Props) {
           </Text>
         </View>
 
+<Text style={styles.sectionLabel}>ACCOUNT</Text>
+
+<View style={styles.card}>
+  <View style={styles.cardIcon}>
+    <Text style={styles.iconText}>G</Text>
+  </View>
+
+  <View style={styles.cardContent}>
+    <Text style={styles.cardTitle}>Google account</Text>
+    <Text style={styles.accountEmail}>
+      {user
+        ? user.email ?? "Signed in"
+        : "Sign in to connect your account"}
+    </Text>
+  </View>
+
+  <Pressable
+    disabled={authBusy}
+    onPress={user ? handleGoogleSignOut : handleGoogleSignIn}
+    style={({ pressed }) => [
+      styles.actionButton,
+      pressed && styles.pressed,
+      authBusy && styles.disabled,
+    ]}
+  >
+    <Text style={styles.actionText}>
+      {authBusy ? "WAIT" : user ? "SIGN OUT" : "SIGN IN"}
+    </Text>
+  </Pressable>
+</View>
+
         <Text style={styles.sectionLabel}>DATA & BACKUP</Text>
 
         <View style={styles.card}>
@@ -206,6 +290,11 @@ export default function SettingsScreen({ onBack, onRestore }: Props) {
 }
 
 const styles = StyleSheet.create({
+  accountEmail: {
+    color: COLORS.textSecondary,
+    fontSize: 10,
+    lineHeight: 15,
+  },
   screen: {
     flex: 1,
     backgroundColor: COLORS.background,
