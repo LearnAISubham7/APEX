@@ -10,7 +10,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Platform } from "react-native";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB055noWfdf__yjla6Lu_Tb8Wf_B-tVs8",
+  apiKey: "AIzaSyBO55noWfdf__yjla6Lu_Tb8Wf_B-tVsL8",
   authDomain: "apex-cd57a.firebaseapp.com",
   projectId: "apex-cd57a",
   messagingSenderId: "375804782071",

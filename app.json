@@ -1,4 +1,3 @@
-
 {
   "expo": {
     "name": "APEX",
@@ -38,6 +37,12 @@
       "eas": {
         "projectId": "27d34856-c489-4570-8a7b-570e19623d8f"
       }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/27d34856-c489-4570-8a7b-570e19623d8f"
     }
   }
 }
