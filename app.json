@@ -10,6 +10,10 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.learnaisubham7.apex",
+      "blockedPermissions": [
+        "android.permission.SYSTEM_ALERT_WINDOW"
+      ],
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/android-icon-foreground.png",
@@ -24,6 +28,11 @@
     "plugins": [
       "expo-sqlite",
       "expo-sharing"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "27d34856-c489-4570-8a7b-570e19623d8f"
+      }
+    }
   }
 }
